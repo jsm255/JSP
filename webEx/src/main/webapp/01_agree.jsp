@@ -80,14 +80,12 @@
         <br><br>
 
         <input id="button" type="submit" value="확인">
-        <!-- <input type="button" value="asdfasdf" onclick="go(form)"> -->
     </form>
 
     <script>
 
     </script>
 
-<!--     <script type="text/javascript" src="copyAndPaste.js"></script> -->
     <script type="text/javascript" src="02_validation.js"></script>
 </body>
 </html>
