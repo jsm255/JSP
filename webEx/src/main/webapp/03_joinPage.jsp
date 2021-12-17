@@ -102,20 +102,20 @@
         </select><br><br>
 
         <span>본인 확인 이메일(선택)</span><br>
-        <input type="email" placeholder="적으면 좋고"><br><br>
+        <input type="email" placeholder="적으면 좋고" name="email"><br><br>
 
         <span>휴대전화</span><br>
         <select id="region" name="region">
-            <option value="1">대한민국 +82</option>
-            <option value="2">노르웨이 +47</option>
-            <option value="3">네팔 +977</option>
-            <option value="4">뉴질랜드 +64</option>
-            <option value="5">덴마크 +45</option>
-            <option value="6">도미니카공화국 +1 809</option>
-            <option value="7">독일 +49</option>
-            <option value="8">라트비아 +371</option>
+            <option value="대한민국 +82">대한민국 +82</option>
+            <option value="노르웨이 +47">노르웨이 +47</option>
+            <option value="네팔 +977">네팔 +977</option>
+            <option value="뉴질랜드 +64">뉴질랜드 +64</option>
+            <option value="덴마크 +45">덴마크 +45</option>
+            <option value="도미니카공화국 +1 809">도미니카공화국 +1 809</option>
+            <option value="독일 +49">독일 +49</option>
+            <option value="라트비아 +371">라트비아 +371</option>
         </select><br>
-        <input type="tel" placeholder="전화번호를 입력"><br><br>
+        <input type="tel" placeholder="전화번호를 입력" name="tel"><br><br>
 
 		<br><br>
         <input type="submit" value="가입하기">

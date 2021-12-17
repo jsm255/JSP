@@ -3,12 +3,12 @@
 
         function checkAll(form) {
             if (form.all.checked) {
-                $(form.div.must).attr("checked", "");
-                $(form.div.free).attr("checked", "");
+                $(form.must).prop("checked", true);
+                $(form.free).prop("checked", true);
             }
             else {
-                $(form.must).removeAttr("checked");
-                $(form.free).removeAttr("checked");
+                $(form.must).prop("checked", false);
+                $(form.free).prop("checked", false);
             }
         }
         
