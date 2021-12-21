@@ -15,6 +15,10 @@
     ArrayList<UserDTO> users = dao.getUsers();
     String userName = users.get(UserDAO.log).getId();
     %>
+    <script>
+	let log = <%= UserDAO.log %>;
+	sessionStorage.setItem("log", log);
+    </script>
     <h2><%=userName %>님 환영합니다.</h2>
     <form method="get" action="05_mainPage.jsp">
         <input type="submit" value="로그아웃">

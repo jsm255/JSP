@@ -42,6 +42,11 @@
 if(UserDAO.log != -1) {
 	UserDAO dao = UserDAO.getInstance();
 	dao.logout();
+	%>
+	<script>
+	sessionStorage.removeItem("log");
+	</script>
+	<%
 }
 %>
 
