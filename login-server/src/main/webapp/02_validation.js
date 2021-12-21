@@ -64,3 +64,6 @@
             if(check === false) alert("이메일을 제외하고 빠짐없이 채워주세요.");
             else document.querySelector(".join").submit();
         });
+
+		
+
