@@ -14,6 +14,7 @@
     UserDAO dao = UserDAO.getInstance();
     ArrayList<UserDTO> users = dao.getUsers();
     String userName = users.get(UserDAO.log).getId();
+//     session.setAttribute("log", UserDAO.log);
     %>
     <script>
 	let log = <%= UserDAO.log %>;
