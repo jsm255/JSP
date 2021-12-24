@@ -14,7 +14,12 @@
     UserDAO dao = UserDAO.getInstance();
     ArrayList<UserDTO> users = dao.getUsers();
     String userName = users.get(UserDAO.log).getId();
+    
+    // java에서 세션값 설정하기
 //     session.setAttribute("log", UserDAO.log);
+	
+	// session.removeAttribute("log");
+// 	response.sendRedirect(url);
     %>
     <script>
 	let log = <%= UserDAO.log %>;

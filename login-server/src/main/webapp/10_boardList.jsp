@@ -1,0 +1,125 @@
+<%@page import="java.sql.Timestamp"%>
+<%@page import="board.BoardDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="board.BoardDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <style>
+    </style>    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<title>게시판</title>
+</head>
+<body>
+<script>
+cleanUp();
+
+function cleanUp(){
+	const tableHead = $("#tableHead").detach();
+	
+	$("table tr").remove();
+	$("table").append(tableHead);
+}
+</script>
+    <!-- 컨텐츠를 등록하고, 들어가면 DB에 있는 데이터들을 뿌려주는 -->
+    <div>
+        <table style="border: solid brown 1px">
+            <tr id="tableHead">
+                <td>no</td>
+                <td>title</td>
+                <td>id</td>
+                <td>view</td>
+                <td>like</td>
+                <td>date</td>
+            </tr>
+            <% 
+            // 페이지 표시
+            BoardDAO dao = BoardDAO.getInstance();
+        	ArrayList<BoardDTO> temp = dao.getBoard();
+            
+        	int lastPage = temp.size() / 10;
+            if(temp.size() % 10 != 0) lastPage ++;
+        	
+            int pageNum;
+            if(request.getParameter("pageNum") == null) pageNum = 1;
+            else pageNum = Integer.parseInt(request.getParameter("pageNum").toString());	// 페이지를 읽음
+            if(request.getParameter("move") != null) {
+	            if(Integer.parseInt(request.getParameter("move")) == 2) {
+	            	if(lastPage > pageNum) pageNum ++;
+	            }
+	            else{
+	            	if(pageNum > 1) pageNum --;
+	            }
+				response.sendRedirect(String.format("10_boardList.jsp?pageNum=%d",pageNum));
+// 				request.getRequestDispatcher(String.format("10_boardList.jsp?pageNum=%d",pageNum));
+            }
+//             pageNum += moving;
+//             request.getRequestDispatcher("10_boardList.jsp").forward(request, response);	// 페이지를 다시 불러옴
+
+			%>
+			<h1><%=pageNum %></h1>
+			<%
+        		
+			
+				int contentStartNum = (pageNum-1)*10;
+				int contentEndNum = (pageNum*10) -1 >= temp.size()-1 ? temp.size()-1 : (pageNum*10) -1;
+            
+            	
+            	for(int i = contentStartNum; i <= contentEndNum; i++) {
+            		BoardDTO now = temp.get(i);
+            		int code = now.getCode();
+            		String title = now.getTitle();
+            		String id = now.getId();
+            		int view = now.getView();
+            		int like = now.getLike();
+            		Timestamp date = now.getDate();
+            		%>
+            		<tr>
+            		<td><%=code %>
+            		<td><%=title %>
+            		<td><%=id %>
+            		<td><%=view %>
+            		<td><%=like %>
+            		<td><%=date %>
+            		</tr>
+            		<%
+            	}
+            	
+            %>
+            <tr>
+            <%
+            int pageStart = pageNum - (pageNum % 10) + 1;
+            int pageEnd = pageNum - (pageNum % 10) + 10 >= lastPage ? lastPage : pageNum - (pageNum % 10) + 10;
+            
+            %>
+            <td colspan=6>
+            
+            <%
+            for(int i = pageStart; i<=pageEnd; i++) {
+            	%>
+            	<a href="10_boardList.jsp?pageNum=<%=i%>"><%=i %></a>
+            	<%
+            }
+            %>
+            <%
+            if(pageNum != 1){
+            	%>
+            <button onclick="location.href = '10_boardList.jsp?pageNum=<%=pageNum%>&move=1'">이전</button>
+            	<%
+            }
+            if(pageNum < lastPage){
+            	%>
+            <button onclick="location.href = '10_boardList.jsp?pageNum=<%=pageNum%>&move=2'">다음</button>
+            <%
+            }
+            %>
+            
+        </table>
+    </div>
+    
+</body>
+</html>

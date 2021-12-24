@@ -16,6 +16,7 @@
         UserDAO dao = UserDAO.getInstance();
         UserDTO user = new UserDTO(id, pw);
         if(dao.loginUser(user)) {
+        	// jsp에서는 response.sendRedirect("06_login.jsp"); 같이 입력하는 식으로 임시적으로 다른 페이지로 보내는게 가능하다.
         	%>
         	<form id="success" method="get" action="08_logMainPage.jsp"></form>
         	<script>

@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import util.DBManager;
+
 public class UserDAO {
 	
 	// DAO(Data Access Object)
@@ -30,30 +32,30 @@ public class UserDAO {
 	private ArrayList<UserDTO> users = null;
 	
 	// 3. DB 연동하기
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			String url = "jdbc:mysql://localhost:3306/loginServer?TimeZone=UTC";
-			String user = "root";
-			String password = "steamSM)2)7";
-			conn = DriverManager.getConnection(url, user, password);
-			
-			if(conn != null)
-				System.out.println("DB연동 성공!");
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return conn;
-	}
+//	public Connection getConnection() {
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			
+//			String url = "jdbc:mysql://localhost:3306/loginServer?TimeZone=UTC";
+//			String user = "root";
+//			String password = "steamSM)2)7";
+//			conn = DriverManager.getConnection(url, user, password);
+//			
+//			if(conn != null)
+//				System.out.println("DB연동 성공!");
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+//		return conn;
+//	}
 	
 	// 4. 연동된 DB에서 데이터 불러오기
 	public ArrayList<UserDTO> getUsers(){
 		users = new ArrayList<UserDTO>();
 		
 		try {
-			conn = getConnection(); // DB연동하기
+			conn = DBManager.getConnection(); // DB연동하기
 			String sql = "select* from users";	// pstmt가 도와줄 것임
 			pstmt = conn.prepareStatement(sql);	// 연동된 DB에 쿼리를 날릴 준비가 되었음!
 			
@@ -84,7 +86,7 @@ public class UserDAO {
 	public void addUser(UserDTO user) {
 		if(checkUser(user.getId())) {
 			try {
-				conn = getConnection();
+				conn = DBManager.getConnection();
 				
 				String sql = "insert into users(id, pw, regDate) values(?, ?, ?)";	// sql 쿼리의 포맷은 ?이다!
 				pstmt = conn.prepareStatement(sql);
@@ -114,7 +116,7 @@ public class UserDAO {
 	
 	public boolean loginUser(UserDTO user) {
 		try {
-			conn = getConnection();
+			conn = DBManager.getConnection();
 			
 			ArrayList<UserDTO> users = getUsers();
 			

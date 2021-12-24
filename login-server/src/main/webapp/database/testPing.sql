@@ -7,4 +7,6 @@
 --delete from users where code=3;
 --delete from users where code=4;
 
-select* from users
+use loginServer;
+
+select* from board
