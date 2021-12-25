@@ -9,32 +9,33 @@
 <head>
 <meta charset="UTF-8">
     <style>
+    *{
+    margin: 0;
+    padding: 0;
+    }
+    
+    table{
+    width: 1000px;
+    text-align: center;
+    
+    border: solid 1px wheat;
+    }
     </style>    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <title>게시판</title>
 </head>
 <body>
-<script>
-cleanUp();
-
-function cleanUp(){
-	const tableHead = $("#tableHead").detach();
-	
-	$("table tr").remove();
-	$("table").append(tableHead);
-}
-</script>
     <!-- 컨텐츠를 등록하고, 들어가면 DB에 있는 데이터들을 뿌려주는 -->
     <div>
-        <table style="border: solid brown 1px">
+        <table>
             <tr id="tableHead">
-                <td>no</td>
-                <td>title</td>
-                <td>id</td>
-                <td>view</td>
-                <td>like</td>
-                <td>date</td>
+                <th>no</th>
+                <th id="title">title</th>
+                <th>id</th>
+                <th>view</th>
+                <th>like</th>
+                <th>date</th>
             </tr>
             <% 
             // 페이지 표시
@@ -60,11 +61,7 @@ function cleanUp(){
 //             pageNum += moving;
 //             request.getRequestDispatcher("10_boardList.jsp").forward(request, response);	// 페이지를 다시 불러옴
 
-			%>
-			<h1><%=pageNum %></h1>
-			<%
         		
-			
 				int contentStartNum = (pageNum-1)*10;
 				int contentEndNum = (pageNum*10) -1 >= temp.size()-1 ? temp.size()-1 : (pageNum*10) -1;
             
@@ -80,7 +77,7 @@ function cleanUp(){
             		%>
             		<tr>
             		<td><%=code %>
-            		<td><%=title %>
+            		<td><a href="18_boardView.jsp?code=<%=code%>"><%=title %></a>
             		<td><%=id %>
             		<td><%=view %>
             		<td><%=like %>

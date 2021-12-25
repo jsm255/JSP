@@ -21,6 +21,7 @@ public class BoardDAO {
 	private ResultSet rs = null;
 	
 	private ArrayList<BoardDTO> board = null;
+	private BoardDTO article = null;
 	
 	// UserData는 UserDAO가 불러온다
 	
@@ -54,5 +55,32 @@ public class BoardDAO {
 		}
 		
 		return board;
+	}
+	
+	public BoardDTO getArticle(int inputCode) {
+		try {
+			con = DBManager.getConnection();
+			String sql = "select* from board where code=" + inputCode;
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int code = rs.getInt(1);
+				String title = rs.getString(2);
+				String content = rs.getString(3);
+				String id = rs.getString(4);
+				String pw = rs.getString(5);
+				int view = rs.getInt(6);
+				int like = rs.getInt(7);
+				Timestamp date = rs.getTimestamp(8);
+				
+				article = new BoardDTO(code, title, content, id, pw, view, like, date);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return article;
 	}
 }
