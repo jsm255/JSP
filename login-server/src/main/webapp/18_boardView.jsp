@@ -51,8 +51,14 @@ Timestamp date = article.getDate();
                 <td><%=date %></td>
             </tr>
             <tr>
-                <td colspan=6><%=content %></td>
+                <td height=300px colspan=6><%=content %></td>
             </tr>
+            <tr>
+            	<td colspan=2><button onclick="location.href='15_checkPass.jsp?code=<%=code%>&action=modify'">수정</button></td>
+            	<td colspan=2><button onclick="location.href='15_checkPass.jsp?code=<%=code%>&action=delete'">삭제</button></td>
+            	<td colspan=2><button onclick="location.href='10_boardList.jsp'">목록</button></td>
+            </tr>
+            
         </table>
     </div>
 </body>
