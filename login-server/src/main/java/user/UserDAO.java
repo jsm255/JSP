@@ -122,7 +122,7 @@ public class UserDAO {
 			
 			for(UserDTO temp : users) {
 				if(user.getId().equals(temp.getId()) && user.getPw().equals(temp.getPw())) {
-					log = temp.getCode() - 1;	// mysql 인덱스는 java보다 1이 크다
+					log = temp.getCode();	// mysql 인덱스는 java보다 1이 크다
 					System.out.println("로그인 성공!");
 					return true;
 				}
@@ -132,6 +132,23 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public String getUserName() {
+		try {
+			conn = DBManager.getConnection();
+			
+			ArrayList<UserDTO> users = getUsers();
+			
+			for(UserDTO temp : users) {
+				if(log == temp.getCode()) return temp.getId();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return "Guest";
+			
 	}
 	
 	public void logout() {

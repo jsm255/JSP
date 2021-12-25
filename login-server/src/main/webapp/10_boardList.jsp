@@ -93,7 +93,7 @@
             int pageEnd = pageNum - (pageNum % 10) + 10 >= lastPage ? lastPage : pageNum - (pageNum % 10) + 10;
             
             %>
-            <td colspan=6>
+            <td colspan=5>
             
             <%
             for(int i = pageStart; i<=pageEnd; i++) {
@@ -114,6 +114,10 @@
             <%
             }
             %>
+            
+            <td>
+            <button onclick="location.href = '11_boardWrite.jsp'">글 작성</button>
+            </td>
             
         </table>
     </div>

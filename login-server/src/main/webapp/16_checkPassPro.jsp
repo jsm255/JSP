@@ -35,10 +35,7 @@ if(articlePw.equals(pw)){
 	}
 }
 else {
-	%>
-	<script>alert("패스워드가 틀립니다!");</script>
-<%
-response.sendRedirect(String.format("18_boardView.jsp?code=%d&error=pw",code));
+	response.sendRedirect(String.format("18_boardView.jsp?code=%d&error=pw",code));
 
 }
 %>

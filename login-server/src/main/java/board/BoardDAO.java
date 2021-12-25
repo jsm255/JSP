@@ -83,4 +83,21 @@ public class BoardDAO {
 		}
 		return article;
 	}
+	
+	public boolean writeArticle(BoardDTO article) {
+		try {
+			con = DBManager.getConnection();
+			String sql = String.format("insert board(title, content, id, password) values(%s,%s,%s,%s)", 
+					article.getTitle(), article.getContent(), article.getId(), article.getPassword());
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
