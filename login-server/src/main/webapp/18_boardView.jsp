@@ -20,6 +20,11 @@ border: solid 1px black;
 }
 </style>
 <%
+if(request.getParameter("error") != null) {
+	%>
+	<script>alert("비밀번호가 틀렸습니다.")</script>
+	<%
+}
 int inputCode = Integer.parseInt(request.getParameter("code"));
 BoardDAO dao = BoardDAO.getInstance();
 BoardDTO article = dao.getArticle(inputCode);

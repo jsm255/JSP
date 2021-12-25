@@ -56,7 +56,7 @@
 	            	if(pageNum > 1) pageNum --;
 	            }
 				response.sendRedirect(String.format("10_boardList.jsp?pageNum=%d",pageNum));
-// 				request.getRequestDispatcher(String.format("10_boardList.jsp?pageNum=%d",pageNum));
+// 				request.getRequestDispatcher(String.format("10_boardList.jsp?pageNum=%d",pageNum)).forward(request, response);
             }
 //             pageNum += moving;
 //             request.getRequestDispatcher("10_boardList.jsp").forward(request, response);	// 페이지를 다시 불러옴
