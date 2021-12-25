@@ -87,12 +87,52 @@ public class BoardDAO {
 	public boolean writeArticle(BoardDTO article) {
 		try {
 			con = DBManager.getConnection();
-			String sql = String.format("insert board(title, content, id, password) values(%s,%s,%s,%s)", 
-					article.getTitle(), article.getContent(), article.getId(), article.getPassword());
+			String sql = "insert board(title, content, id, password) values(?,?,?,?)"; //sql 쿼리의 포맷!
 			
 			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+			pstmt.setString(1, article.getTitle());
+			pstmt.setString(2, article.getContent());
+			pstmt.setString(3, article.getId());
+			pstmt.setString(4, article.getPassword());
 			
+			pstmt.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteArticle(int inputCode) {
+		try {
+			getArticle(inputCode);
+			con = DBManager.getConnection();
+			String sql = String.format("delete from board where code=%d", inputCode);
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean updateArticle(BoardDTO article, int inputCode) {
+		try {
+			con = DBManager.getConnection();
+			String sql = "update board set title=?, content=?, id=?, password=? where code=?"; //sql 쿼리의 포맷!
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getTitle());
+			pstmt.setString(2, article.getContent());
+			pstmt.setString(3, article.getId());
+			pstmt.setString(4, article.getPassword());
+			pstmt.setInt(5, inputCode);
+			
+			pstmt.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

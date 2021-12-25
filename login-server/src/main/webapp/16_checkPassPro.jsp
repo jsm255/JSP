@@ -16,10 +16,6 @@ String pw = request.getParameter("password");
 String action = request.getParameter("action");
 int code = Integer.parseInt(request.getParameter("code"));
 
-System.out.println(pw);
-System.out.println(action);
-System.out.println(code);
-
 BoardDAO dao = BoardDAO.getInstance();
 BoardDTO article = dao.getArticle(code);
 

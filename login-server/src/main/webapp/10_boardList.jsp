@@ -1,3 +1,5 @@
+<%@page import="user.UserDTO"%>
+<%@page import="user.UserDAO"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="board.BoardDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,6 +28,21 @@
 <title>게시판</title>
 </head>
 <body>
+    <%
+    UserDAO uDao = UserDAO.getInstance();
+    ArrayList<UserDTO> users = uDao.getUsers();
+    String userName = uDao.getUserName();
+    
+//     java에서 세션값 설정하기
+    session.setAttribute("log", UserDAO.log);
+	
+	// session.removeAttribute("log");
+// 	response.sendRedirect(url);
+    %>
+        <h2><%=userName %>님 환영합니다.</h2>
+    <form method="get" action="05_mainPage.jsp">
+        <input type="submit" value="로그아웃">
+    </form>
     <!-- 컨텐츠를 등록하고, 들어가면 DB에 있는 데이터들을 뿌려주는 -->
     <div>
         <table>
@@ -38,9 +55,16 @@
                 <th>date</th>
             </tr>
             <% 
+            if(request.getParameter("delete") != null) {
+            	System.out.println("삭제 성공!");
+            	%>
+            	<script>alert("삭제에 성공했습니다.")</script>
+            	<%
+            }
+            
             // 페이지 표시
-            BoardDAO dao = BoardDAO.getInstance();
-        	ArrayList<BoardDTO> temp = dao.getBoard();
+            BoardDAO bDao = BoardDAO.getInstance();
+        	ArrayList<BoardDTO> temp = bDao.getBoard();
             
         	int lastPage = temp.size() / 10;
             if(temp.size() % 10 != 0) lastPage ++;

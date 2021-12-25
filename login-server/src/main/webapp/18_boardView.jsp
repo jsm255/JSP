@@ -25,6 +25,11 @@ if(request.getParameter("error") != null) {
 	<script>alert("비밀번호가 틀렸습니다.")</script>
 	<%
 }
+if(request.getParameter("delete") != null) {
+	%>
+	<script>alert("알 수 없는 이유로 삭제에 실패했습니다.")</script>
+	<%
+}
 int inputCode = Integer.parseInt(request.getParameter("code"));
 BoardDAO dao = BoardDAO.getInstance();
 BoardDTO article = dao.getArticle(inputCode);

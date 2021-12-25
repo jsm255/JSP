@@ -17,6 +17,8 @@
     
 //     java에서 세션값 설정하기
     session.setAttribute("log", UserDAO.log);
+
+	response.sendRedirect("10_boardList.jsp");
 	
 	// session.removeAttribute("log");
 // 	response.sendRedirect(url);
