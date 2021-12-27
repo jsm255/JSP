@@ -64,6 +64,7 @@
             
             // 페이지 표시
             BoardDAO bDao = BoardDAO.getInstance();
+            bDao.setDummies();		// 들어와서 게시물이 없다면 더미를 만들어줌 (만약 있으면 그냥 패스함)
         	ArrayList<BoardDTO> temp = bDao.getBoard();
             
         	int lastPage = temp.size() / 10;

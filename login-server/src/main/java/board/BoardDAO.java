@@ -140,4 +140,33 @@ public class BoardDAO {
 			return false;
 		}
 	}
+	
+	public void setDummies() {
+		if(board == null || board.size() == 0) {
+			try {
+				con = DBManager.getConnection();
+				
+				for(int i = 0; i<11; i++) {
+					char ch = (char)(97+i);
+					System.out.println(ch);
+					String title = "대충 그럴듯한 제목 ";
+					String content = "대충 아이디와 비밀번호가 같다는 내용";
+					String id = "";
+					id += String.valueOf(ch) + String.valueOf(ch) + String.valueOf(ch) + String.valueOf(ch);
+					
+					pstmt = con.prepareStatement("insert board(title, content, id, password) values(?, ?, ?, ?)");
+					pstmt.setString(1, String.format(title+"%d", (i+1)));
+					pstmt.setString(2, content);
+					pstmt.setString(3, id);
+					pstmt.setString(4, id);
+					
+					pstmt.executeUpdate();
+				}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+	}
 }
