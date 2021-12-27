@@ -155,4 +155,47 @@ public class UserDAO {
 		log = -1;
 	}
 	
+	public void addDummies() {
+		users = getUsers();
+		if(users.size() == 0) {
+			try {
+				conn = DBManager.getConnection();
+				
+				for(int i = 0; i<11; i++) {
+					char ch = (char)(97+i);
+					String id = "";
+					id += String.valueOf(ch) + String.valueOf(ch) + String.valueOf(ch) + String.valueOf(ch);
+					String pw = id;
+					
+					pstmt = conn.prepareStatement("insert users(id, pw) values(?, ?)");
+					pstmt.setString(1, id);
+					pstmt.setString(2, pw);
+					
+					pstmt.executeUpdate();
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void printAllUsers() {
+		users = getUsers();
+		try {
+			conn = DBManager.getConnection();
+			
+			pstmt = conn.prepareStatement("Select* from users");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				System.out.printf("%d) id : %s pw : %s\n",rs.getInt(1),rs.getString(2),rs.getString(3));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 }

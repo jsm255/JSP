@@ -39,12 +39,15 @@
 <body>
 
 <%
+UserDAO dao = UserDAO.getInstance();
 if(UserDAO.log != -1) {
-	UserDAO dao = UserDAO.getInstance();
 	dao.logout();
 	
 session.removeAttribute("log");
 }
+
+dao.addDummies();
+dao.printAllUsers();
 %>
 
     <h1> 랜딩 페이지 </h1>

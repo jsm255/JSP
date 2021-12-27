@@ -9,6 +9,8 @@
 
 use loginServer;
 
+insert users(id, pw) values('aaaa')
+
 insert board(title, content, id, password) values("그럴 듯한 제목 1", "대충 아이디와 비밀번호가 같다는 내용", "aaaa", "aaaa");
 
 select* from board
