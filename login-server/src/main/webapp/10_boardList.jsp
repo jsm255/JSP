@@ -102,7 +102,7 @@
             		%>
             		<tr>
             		<td><%=code %>
-            		<td><a href="18_boardView.jsp?code=<%=code%>"><%=title %></a>
+            		<td><a href="18_boardView.jsp?code=<%=code%>&action=view"><%=title %></a>
             		<td><%=id %>
             		<td><%=view %>
             		<td><%=like %>

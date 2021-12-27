@@ -142,13 +142,13 @@ public class BoardDAO {
 	}
 	
 	public void setDummies() {
-		if(board == null || board.size() == 0) {
+		board = getBoard();
+		if(board.size() == 0) {
 			try {
 				con = DBManager.getConnection();
 				
 				for(int i = 0; i<11; i++) {
 					char ch = (char)(97+i);
-					System.out.println(ch);
 					String title = "대충 그럴듯한 제목 ";
 					String content = "대충 아이디와 비밀번호가 같다는 내용";
 					String id = "";
@@ -167,6 +167,45 @@ public class BoardDAO {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	
+	
+	public void increaseView(int inputCode) {
+		try {
+			con = DBManager.getConnection();
+			
+			BoardDTO temp = getArticle(inputCode);
+			int tempView = temp.getView();
+			tempView ++;
+			temp.setView(tempView);
+			
+			pstmt = con.prepareStatement(String.format("Update board set view=%d where code=%d", temp.getView(), inputCode));
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public void increaseLike(int inputCode) {
+		try {
+			con = DBManager.getConnection();
+			BoardDTO temp = getArticle(inputCode);
+			int tempLike = temp.getLike();
+			tempLike ++;
+			temp.setLike(tempLike);
+			
+			pstmt = con.prepareStatement(String.format("Update board set `like`=%d where code=%d", temp.getLike(), inputCode));
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }

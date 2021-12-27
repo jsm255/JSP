@@ -32,7 +32,20 @@ if(request.getParameter("delete") != null) {
 }
 int inputCode = Integer.parseInt(request.getParameter("code"));
 BoardDAO dao = BoardDAO.getInstance();
+
+if(request.getParameter("action").equals("like")) {		// 좋아요로 리다이렉트 한 경우 조회수에는 반영하지 않음
+	%>
+	<script>alert("이 게시글에 좋아요를 눌렀습니다.")</script>
+	<%
+	dao.increaseLike(inputCode);
+}
+else if(request.getParameter("action").equals("view")){													// 그게 아닌경우에는 조회수에 반영함
+	dao.increaseView(inputCode);
+}
+
 BoardDTO article = dao.getArticle(inputCode);
+
+
 %>
 <title><%=article.getTitle() %> 읽는 중</title>
 </head>
@@ -61,11 +74,18 @@ Timestamp date = article.getDate();
                 <td><%=date %></td>
             </tr>
             <tr>
+            	<td>글 조회수</td>
+            	<td colspan=2><%=view %>회</td>
+            	<td>글 좋아요수</td>
+            	<td colspan=2><%=like %>회</td>
+            </tr>
+            <tr>
                 <td height=300px colspan=6><%=content %></td>
             </tr>
             <tr>
-            	<td colspan=2><button onclick="location.href='15_checkPass.jsp?code=<%=code%>&action=modify'">수정</button></td>
-            	<td colspan=2><button onclick="location.href='15_checkPass.jsp?code=<%=code%>&action=delete'">삭제</button></td>
+            	<td ><button onclick="location.href='15_checkPass.jsp?code=<%=code%>&action=modify'">수정</button></td>
+            	<td ><button onclick="location.href='15_checkPass.jsp?code=<%=code%>&action=delete'">삭제</button></td>
+            	<td colspan=2><button onclick="location.href='18_boardView.jsp?code=<%=code %>&action=like'">좋아요!</button></td>
             	<td colspan=2><button onclick="location.href='10_boardList.jsp'">목록</button></td>
             </tr>
             
