@@ -16,7 +16,7 @@ public class DBManager {
 			// jdbc:mysql://localhost:3306/?user=root 가 기본값인데, 스키마를 특정시켜줘야함!
 			String url = "jdbc:mysql://localhost:3306/loginServer?serverTimeZone=UTC";
 			String id = "root";
-			String pw = "steamSM)2)7";
+			String pw = "root";
 			con = DriverManager.getConnection(url, id, pw);
 			
 			if(con != null) {
