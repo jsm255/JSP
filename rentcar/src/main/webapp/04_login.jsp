@@ -8,19 +8,19 @@
 </head>
 <body>
 <%
-	String before = "";
-	if(session.getAttribute("before") != null) {
-		before = String.valueOf(session.getAttribute("before"));	// 이전 페이지가 있으면 변수에 넘겨주고
-		session.removeAttribute("before");							// 퇴장
-	}
+String action = String.valueOf(request.getParameter("action"));
+if(action.equals("loginFailed")) {
+	%>
+	<script>alert("아이디와 비밀번호가 일치하지 않습니다.")</script>
+	<%
+}
 %>
-
 	<div>
         <form method="post" action="05_loginPro.jsp">
             <input type="text" name="id" required>
             <input type="password" name="pw" required>
             <input type="submit" value="로그인">
-            <input type="button" onclick="location.href='06_join.jsp'">
+            <input type="button" onclick="location.href='06_join.jsp'" value="회원 가입">
         </form>
     </div>
 </body>

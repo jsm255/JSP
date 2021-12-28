@@ -36,14 +36,14 @@ public class UserDAO {
 			users = new ArrayList<>();
 			
 			while(rs.next()) {
-				String userCode = rs.getString(1);
+				String id = rs.getString(1);
 				String userName = rs.getString(2);
 				String pw = rs.getString(3);
 				int age = rs.getInt(4);
 				int rentCnt = rs.getInt(5);
 				int totalPrice = rs.getInt(6);
 				
-				UserDTO getData = new UserDTO(userCode, userName, pw, age, rentCnt, totalPrice);
+				UserDTO getData = new UserDTO(id, userName, pw, age, rentCnt, totalPrice);
 				
 				users.add(getData);
 			}
@@ -51,6 +51,17 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return users;
+	}
+	
+	public boolean login(String id, String pw) {
+		for(int i = 0; i<users.size(); i++) {
+			if(users.get(i).getId().equals(id) && users.get(i).getPw().equals(pw)) {
+				UserDAO.log = i;
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 

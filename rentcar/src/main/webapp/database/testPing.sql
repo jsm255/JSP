@@ -9,7 +9,7 @@ use rentcar;
 --);
 --
 create table `user`(
-	userCode varchar(30) not null primary key,
+	id varchar(30) not null primary key,
 	userName varchar(30) not null,
 	pw varchar(30) not null,
 	age integer not null,
@@ -24,7 +24,7 @@ create table `user`(
 --delete from `user` where userCode="유저 코드";
 
 insert car(carCode, carName, imgPath, price) values("tng-1", "더 뉴 그랜저", "image/theNewGrandure.jpg", "200000");
-insert `user`(userCode, userName, pw, age) values("acb132", "조성민", "1234", 26);
+insert `user`(id, userName, pw, age) values("1234", "조성민", "1234", 26);
 
 Select* from car;
 Select* from `user`;

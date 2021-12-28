@@ -1,7 +1,7 @@
 package user;
 
 public class UserDTO {
-	String userCode;
+	String id;
 	String userName;
 	String pw;
 	int age;
@@ -9,16 +9,16 @@ public class UserDTO {
 	int totalPrice;
 	
 	// 신규 가입시 사용
-	public UserDTO(String userCode, String userName, String pw, int age) {
-		this.userCode = userCode;
+	public UserDTO(String id, String userName, String pw, int age) {
+		this.id = id;
 		this.userName = userName;
 		this.pw = pw;
 		this.age = age;
 	}
 	
 	// 데이터를 가져올 때 사용
-	public UserDTO(String userCode, String userName, String pw, int age, int rentCnt, int totalPrice) {
-		this.userCode = userCode;
+	public UserDTO(String id, String userName, String pw, int age, int rentCnt, int totalPrice) {
+		this.id = id;
 		this.userName = userName;
 		this.pw = pw;
 		this.age = age;
@@ -26,8 +26,8 @@ public class UserDTO {
 		this.totalPrice = totalPrice;
 	}
 
-	public String getUserCode() {
-		return userCode;
+	public String getId() {
+		return id;
 	}
 	
 	public String getUserName() {
