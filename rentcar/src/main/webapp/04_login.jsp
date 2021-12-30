@@ -14,6 +14,11 @@ if(action.equals("loginFailed")) {
 	<script>alert("아이디와 비밀번호가 일치하지 않습니다.")</script>
 	<%
 }
+else if(action.equals("pleaseLogin")) {
+	%>
+	<script>alert("로그인 후 진행해 주시기 바랍니다.")</script>
+	<%
+}
 %>
 	<div>
         <form method="post" action="05_loginPro.jsp">
@@ -23,5 +28,6 @@ if(action.equals("loginFailed")) {
             <input type="button" onclick="location.href='06_join.jsp'" value="회원 가입">
         </form>
     </div>
+    <button onclick="location.href='01_mainPage'"></button>
 </body>
 </html>

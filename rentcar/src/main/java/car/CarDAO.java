@@ -26,7 +26,7 @@ public class CarDAO {
 		try {
 			con = DBManager.getConnection();
 			
-			pstmt = con.prepareStatement("Select* from car");
+			pstmt = con.prepareStatement("Select* from car order by price asc");	// 가격 기준 오름차순으로 가져옴
 			
 			rs = pstmt.executeQuery();
 			
@@ -51,5 +51,50 @@ public class CarDAO {
 		return cars;
 	}
 	
+	public String printPrice(CarDTO car) {	// 가격에 쉼표 적어주기
+		String price = String.valueOf(car.getPrice());
+		String newPrice = "";
+		if(price.length() > 3) {
+			for(int i = 0; i<price.length(); i++) {
+				newPrice += price.charAt(i);
+				// 마지막 숫자가 아니고 뒤에 숫자가 3의 배수로 남았다면 ,를 찍어줌
+				if((price.length()-1 -i) % 3 == 0 && (price.length()-1) != i) newPrice += ",";
+				
+			}
+		}
+		else {
+			for(int i = 0; i<price.length(); i++) {
+				newPrice += price.charAt(i);
+			}
+		}
+		newPrice += " 원";
+		return newPrice;
+	}
+	
+	public CarDTO getCar(String carCode) {
+		ArrayList<CarDTO> getter = getCars();
+		int index = -1;
+		for(int i = 0; i<getter.size(); i++) {
+			if(carCode.equals(getter.get(i).getCarCode())) index = i;
+		}
+		return getter.get(index);
+	}
+	
+	public boolean carRented(String carCode) {
+		try {
+			con = DBManager.getConnection();
+			
+			pstmt = con.prepareStatement("update car set rent=true where carCode=?");
+			pstmt.setString(1, carCode);
+			
+			pstmt.executeUpdate();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 	
 }

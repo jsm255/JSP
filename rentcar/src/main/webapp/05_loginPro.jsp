@@ -15,7 +15,6 @@
 String before = "";
 if(session.getAttribute("before") != null) {
 	before = String.valueOf(session.getAttribute("before"));	// 이전 페이지가 있으면 변수에 넘겨주고
-	session.removeAttribute("before");							// 퇴장
 }
 
 String id = request.getParameter("id");
@@ -27,8 +26,10 @@ ArrayList<UserDTO> users = uDao.getUsers();
 
 if(uDao.login(id, pw)) {
 	session.setAttribute("log", UserDAO.log);
+	session.removeAttribute("before");							// 제대로 입력이 됐다면 퇴장
 	if(before.equals("")) response.sendRedirect("01_mainPage.jsp");
 	else if(before.equals("myPage")) response.sendRedirect("03_myPage.jsp");
+	else if(before.equals("rent")) response.sendRedirect("08_rentPage.jsp");
 }
 else {
 	response.sendRedirect("04_login.jsp?action=loginFailed");

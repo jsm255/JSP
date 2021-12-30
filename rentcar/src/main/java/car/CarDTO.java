@@ -1,11 +1,11 @@
 package car;
 
 public class CarDTO {
-	String carCode;
-	String carName;
-	String imgPath;
-	int price;
-	boolean rent;
+	private String carCode;
+	private String carName;
+	private String imgPath;
+	private int price;
+	private boolean rent;
 	
 	public CarDTO(String carCode, String carName, String imgPath, int price, boolean rent) {
 		this.carCode = carCode;
