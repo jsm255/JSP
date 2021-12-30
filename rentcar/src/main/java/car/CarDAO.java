@@ -23,6 +23,7 @@ public class CarDAO {
 	}
 	
 	public ArrayList<CarDTO> getCars(){
+		cars = null;
 		try {
 			con = DBManager.getConnection();
 			
@@ -39,6 +40,8 @@ public class CarDAO {
 				String imgPath = rs.getString(3);
 				int price = rs.getInt(4);
 				boolean rent = rs.getBoolean(5);
+				
+				System.out.printf("%s %s %s %d\n",carCode,carName,imgPath,price);
 
 				CarDTO getData = new CarDTO(carCode, carName, imgPath, price, rent);
 				

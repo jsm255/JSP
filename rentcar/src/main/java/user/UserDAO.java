@@ -27,6 +27,7 @@ public class UserDAO {
 	}
 	
 	public ArrayList<UserDTO> getUsers(){
+		users = null;
 		try {
 			con = DBManager.getConnection();
 			
@@ -43,6 +44,8 @@ public class UserDAO {
 				int age = rs.getInt(4);
 				int rentCnt = rs.getInt(5);
 				int totalPrice = rs.getInt(6);
+				
+				System.out.printf("%s %s %s %d %d %d\n",id,pw,userName,age,rentCnt,totalPrice);
 				
 				UserDTO getData = new UserDTO(id, pw, userName, age, rentCnt, totalPrice);
 				
