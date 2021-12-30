@@ -15,6 +15,7 @@
 </head>
 <body>
 	<%
+	request.setCharacterEncoding("utf-8");
 	if(UserDAO.log == -1) {	// 로그인이 되어있지 않으면 바로 로그인 페이지로 리다이렉트
 		session.setAttribute("before", "myPage");	// 이전 페이지 기억
 		response.sendRedirect("04_login.jsp");

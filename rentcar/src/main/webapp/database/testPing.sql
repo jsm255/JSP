@@ -31,8 +31,10 @@ insert car(carCode, carName, imgPath, price) values("tnd-10", "더 뉴 더미10"
 insert car(carCode, carName, imgPath, price) values("tnd-11", "더 뉴 더미11", "image/theNewGrandure.jpg", "990000");
 
 insert `user`(id, userName, pw, age) values("1234", "조성민", "1234", 26);
+insert `user`(id, pw, userName, age) values("aaaa", "aaaa", "아아아아", 21);
 
 Select* from car;
 Select* from `user`;
 
 drop table `user`;
+drop table car;
