@@ -28,6 +28,6 @@ else if(action.equals("pleaseLogin")) {
             <input type="button" onclick="location.href='06_join.jsp'" value="회원 가입">
         </form>
     </div>
-    <button onclick="location.href='01_mainPage'">메인 페이지로</button>
+    <button onclick="location.href='01_mainPage.jsp'">메인 페이지로</button>
 </body>
 </html>

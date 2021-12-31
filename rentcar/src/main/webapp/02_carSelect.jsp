@@ -27,7 +27,7 @@
         }
         img{
         width:100%;
-        height:70%;
+        height:50%;
         object-fit: cover;
         }
 </style>
@@ -40,17 +40,28 @@
 CarDAO cDao = CarDAO.getInstance();
 ArrayList<CarDTO> cars = cDao.getCars();
 
-// 차가 렌트되었는지를 확인하고 렌트되지 않았으면 표시해줌
+// 남은 차가 있는지 확인하고 없다면 눌렀을 때 알림창을 표시해줌
 for(CarDTO rentCheck : cars) {
-	if(!rentCheck.isRent()) {
-		%>
-		<article onclick="location.href='08_rentPage.jsp?carCode=<%=rentCheck.getCarCode() %>'">
-			<img src=<%= rentCheck.getImgPath()%>>
-			<h4><%=rentCheck.getCarName() %></h4>
-			<h5><%=cDao.printPrice(rentCheck) %></h5>
-		</article>
-		<%
-	}
+		if(rentCheck.getStock() == 0) {
+			%>
+			<article onclick="alert('모두 렌트되었습니다!')">
+				<img src=<%= rentCheck.getImgPath()%>>
+				<h4><%=rentCheck.getCarName() %></h4>
+				<h5><%=cDao.printPrice(rentCheck) %></h5>
+				<h5><span>잔여 대수&#9;: </span><%=rentCheck.getStock() %> 대</h5>
+			</article>
+			<%
+		}
+		else {
+			%>
+			<article onclick="location.href='08_rentPage.jsp?carCode=<%=rentCheck.getCarCode() %>'">
+				<img src=<%= rentCheck.getImgPath()%>>
+				<h4><%=rentCheck.getCarName() %></h4>
+				<h5><%=cDao.printPrice(rentCheck) %></h5>
+				<h5><span>잔여 대수&#9;: </span><%=rentCheck.getStock() %> 대</h5>
+			</article>
+			<%
+		}
 }
 %>
 </div>

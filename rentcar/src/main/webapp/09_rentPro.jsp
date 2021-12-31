@@ -40,7 +40,7 @@ else {
 
 	UserDAO uDao = UserDAO.getInstance();
 	UserDTO user = uDao.getUser(Integer.parseInt(String.valueOf(session.getAttribute("log"))));
-	cDao.carRented(carCode);
+	cDao.carRented(chosen);
 	uDao.userRented(user, pay);
 
 	response.sendRedirect(String.format("10_resultPage.jsp?carCode=%s&month=%d",carCode, month));

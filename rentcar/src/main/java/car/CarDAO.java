@@ -23,7 +23,6 @@ public class CarDAO {
 	}
 	
 	public ArrayList<CarDTO> getCars(){
-		cars = null;
 		try {
 			con = DBManager.getConnection();
 			
@@ -39,11 +38,10 @@ public class CarDAO {
 				String carName = rs.getString(2);
 				String imgPath = rs.getString(3);
 				int price = rs.getInt(4);
-				boolean rent = rs.getBoolean(5);
+				int stock = rs.getInt(5);
+				int rented = rs.getInt(6);
 				
-				System.out.printf("%s %s %s %d\n",carCode,carName,imgPath,price);
-
-				CarDTO getData = new CarDTO(carCode, carName, imgPath, price, rent);
+				CarDTO getData = new CarDTO(carCode, carName, imgPath, price, stock, rented);
 				
 				cars.add(getData);
 			}
@@ -83,12 +81,14 @@ public class CarDAO {
 		return getter.get(index);
 	}
 	
-	public boolean carRented(String carCode) {
+	public boolean carRented(CarDTO car) {
 		try {
 			con = DBManager.getConnection();
 			
-			pstmt = con.prepareStatement("update car set rent=true where carCode=?");
-			pstmt.setString(1, carCode);
+			pstmt = con.prepareStatement("update car set stock=?, rented=? where carCode=?");
+			pstmt.setInt(1, car.getStock()-1);
+			pstmt.setInt(2, car.getRented()+1);
+			pstmt.setString(3, car.getCarCode());
 			
 			pstmt.executeUpdate();
 			

@@ -5,14 +5,16 @@ public class CarDTO {
 	private String carName;
 	private String imgPath;
 	private int price;
-	private boolean rent;
+	private int stock;
+	private int rented;
 	
-	public CarDTO(String carCode, String carName, String imgPath, int price, boolean rent) {
+	public CarDTO(String carCode, String carName, String imgPath, int price, int stock, int rented) {
 		this.carCode = carCode;
 		this.carName = carName;
 		this.imgPath = imgPath;
 		this.price = price;
-		this.rent = rent;
+		this.stock = stock;
+		this.rented = rented;
 	}
 
 	public String getCarCode() {
@@ -35,12 +37,20 @@ public class CarDTO {
 		this.price = price;
 	}
 
-	public boolean isRent() {
-		return rent;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setRent(boolean rent) {
-		this.rent = rent;
+	public void setRent(int stock) {
+		this.stock = stock;
+	}
+	
+	public int getRented() {
+		return rented;
+	}
+	
+	public void setRented(int rented) {
+		this.rented = rented;
 	}
 	
 	
