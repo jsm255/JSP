@@ -30,6 +30,12 @@ if(uDao.login(id, pw)) {
 	if(before.equals("")) response.sendRedirect("01_mainPage.jsp");
 	else if(before.equals("myPage")) response.sendRedirect("03_myPage.jsp");
 	else if(before.equals("rent")) response.sendRedirect("08_rentPage.jsp");
+	else if(before.equals("boardWrite")) response.sendRedirect("14_writeArticle.jsp");
+	else if(before.equals("modifyArticle")) {
+		int articleNum = Integer.parseInt(String.valueOf(session.getAttribute("articleNum")));
+		session.removeAttribute("articleNum");
+		response.sendRedirect(String.format("17_modifyArticle.jsp?articleNum=%d",articleNum));
+	}
 }
 else {
 	response.sendRedirect("04_login.jsp?action=loginFailed");

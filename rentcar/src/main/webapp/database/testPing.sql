@@ -22,19 +22,19 @@ create table board(
 	num integer primary key auto_increment,
 	title varchar(50) not null,
 	content varchar(5000),
-	id varchar(30) not null,
+	userName varchar(30) not null,
 	pw varchar(30) not null,
 	`view` integer default 0,
 	`like` integer default 0,
 	`time` datetime not null default current_timestamp
 );
 
-insert board(title, content, id, pw) values("그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
-insert board(title, content, id, pw) values("안 그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
-insert board(title, content, id, pw) values("대충 그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
-insert board(title, content, id, pw) values("그냥 그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
-insert board(title, content, id, pw) values("전혀 그럴 듯하지 않은 이름", "그럴 듯한 내용", "aaaa", "aaaa");
-insert board(title, content, id, pw, `view`, `like`) values("좋은 이름", "좋은 내용", "aaaa", "aaaa", 100, 99);
+insert board(title, content, userName, pw) values("그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
+insert board(title, content, userName, pw) values("안 그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
+insert board(title, content, userName, pw) values("대충 그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
+insert board(title, content, userName, pw) values("그냥 그럴 듯한 이름", "그럴 듯한 내용", "aaaa", "aaaa");
+insert board(title, content, userName, pw) values("전혀 그럴 듯하지 않은 이름", "그럴 듯한 내용", "aaaa", "aaaa");
+insert board(title, content, userName, pw, `view`, `like`) values("좋은 이름", "좋은 내용", "aaaa", "aaaa", 100, 99);
 
 select* from board where num=2;
 

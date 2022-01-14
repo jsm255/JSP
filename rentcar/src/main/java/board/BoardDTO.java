@@ -6,18 +6,18 @@ public class BoardDTO {
 	private int num;
 	private String title;
 	private String content;
-	private String id;
+	private String userName;
 	private String pw;
 	private int view;
 	private int like;
 	private Timestamp time;
 	
 	// sql에서 가져오는 용도
-	public BoardDTO(int num, String title, String content, String id, String pw, int view, int like, Timestamp time) {
+	public BoardDTO(int num, String title, String content, String userName, String pw, int view, int like, Timestamp time) {
 		this.num = num;
 		this.title = title;
 		this.content = content;
-		this.id = id;
+		this.userName = userName;
 		this.pw = pw;
 		this.view = view;
 		this.like = like;
@@ -25,10 +25,10 @@ public class BoardDTO {
 	}
 	
 	// 등록하는 용도
-	public BoardDTO(String title, String content, String id, String pw) {
+	public BoardDTO(String title, String content, String userName, String pw) {
 		this.title = title;
 		this.content = content;
-		this.id = id;
+		this.userName = userName;
 		this.pw = pw;
 	}
 
@@ -52,12 +52,12 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public String getId() {
-		return id;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	public String getPw() {

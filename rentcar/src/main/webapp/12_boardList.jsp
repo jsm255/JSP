@@ -20,6 +20,10 @@ text-align: center;
 </head>
 <body>
 <%
+
+	if(session.getAttribute("pageNum") != null) {
+		session.removeAttribute("pageNum");
+	}
 	BoardDAO bDao = BoardDAO.getInstance();
 
 // 	// 더미 대량생산
@@ -72,8 +76,8 @@ text-align: center;
 		%>
 		<tr>
 			<td><%=article.getNum() %></td>
-			<td><a href="13_boardView.jsp?articleNum=<%=article.getNum() %>&pageNum=<%=pageNum%>"><%=article.getTitle() %></a></td>
-			<td><%=article.getId() %></td>
+			<td><a href="13_boardView.jsp?articleNum=<%=article.getNum() %>&pageNum=<%=pageNum%>&action=view"><%=article.getTitle() %></a></td>
+			<td><%=article.getUserName() %></td>
 			<td><%=article.getView() %></td>
 			<td><%=article.getLike() %></td>
 			<td><%=article.getTime() %></td>
@@ -82,7 +86,7 @@ text-align: center;
 	}
 	
 %>
-		<tr><td colspan=6>
+		<tr><td colspan=5>
 		<%
 		if(pageNum >= 11) {	// 현재 페이지가 11보다 크면 이전10페이지 버튼을 활성화시켜줌
 			%>
@@ -108,7 +112,12 @@ text-align: center;
 		<%
 	}
 %>
-        </td></tr>
+        </td>
+        
+        <td>
+        	<button onclick="location.href='14_writeArticle.jsp'">글 작성</button>
+        </td>
+        </tr>
     </table>
 </body>
 </html>

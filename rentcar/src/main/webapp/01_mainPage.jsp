@@ -68,7 +68,7 @@
         	<button></button>
         	<h4>마이 페이지</h4>
         </article>
-        <article onclick="loaction.href='12_boardList.jsp?pageNum=1'">
+        <article onclick="location.href='12_boardList.jsp?pageNum=1'">
         	<button></button>
         	<h4>게시판</h4>
         </article>
